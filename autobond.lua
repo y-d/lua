@@ -2,7 +2,7 @@
 -- kinda a fork of it but alr
 local Fluent = loadstring(game:HttpGet("https://github.com/dawid-scripts/Fluent/releases/latest/download/Main.lua"))()
 
-function pprint(str)
+function printnotify(str)
 	Fluent:Notify({
 		Title = "Auto Bond",
 		Content = str,
@@ -126,7 +126,7 @@ local function cyberseallRecordBonds()
     end
 end
 
-pprint("→ Scanning for bonds...")
+printnotify("→ Scanning for bonds...")
 local cyberseallScanTarget = CFrame.new(-424.448975, 26.055481, -49040.6562)
 for i = 1, 50 do
     cyberseallHrp.CFrame = cyberseallHrp.CFrame:Lerp(cyberseallScanTarget, i / 50)
@@ -137,7 +137,7 @@ cyberseallHrp.CFrame = cyberseallScanTarget
 task.wait(0.3)
 cyberseallRecordBonds()
 
-pprint(("→ %d bonds detected. Preparing collection."):format(#cyberseallBondData))
+printnotify(("→ %d bonds detected. Preparing collection."):format(#cyberseallBondData))
 if #cyberseallBondData == 0 then return wwarn("No bonds detected") end
 
 local cyberseallChair = WorkspaceService:WaitForChild("RuntimeItems"):FindFirstChild("Chair")
@@ -172,7 +172,7 @@ local function collectBond(bond)
     task.wait(0.4)
 
     if not bond.item.Parent then
-        pprint("✓ Bond collected")
+        printnotify("✓ Bond collected")
         return true
     else
         wwarn("✗ Bond not collected")
@@ -183,14 +183,14 @@ end
 local failedBonds = {}
 
 for i, bond in ipairs(cyberseallBondData) do
-    pprint(("→ Collecting bond %d/%d"):format(i, #cyberseallBondData))
+    printnotify(("→ Collecting bond %d/%d"):format(i, #cyberseallBondData))
     if not collectBond(bond) then
         table.insert(failedBonds, bond)
     end
 end
 
 if #failedBonds > 0 then
-    pprint(("→ Retrying %d failed bond(s)..."):format(#failedBonds))
+    printnotify(("→ Retrying %d failed bond(s)..."):format(#failedBonds))
     local finalFails = {}
     for _, bond in ipairs(failedBonds) do
         if not collectBond(bond) then
@@ -200,7 +200,7 @@ if #failedBonds > 0 then
     if #finalFails > 0 then
         wwarn(("✗ %d bond(s) still failed after retry."):format(#finalFails))
     else
-        pprint("✓ All bonds collected after retry.")
+        printnotify("✓ All bonds collected after retry.")
     end
 end
 
@@ -219,5 +219,5 @@ Vim:SendKeyEvent(false, Enum.KeyCode.Return, false, game)
 wait()
 Gs.SelectedObject = nil
 
-pprint("→ Script Completed.. wait till server hop..")
-cyberseallQueueOnTp(game:HttpGet(""))
+printnotify("→ Script Completed.. wait till server hop..")
+cyberseallQueueOnTp(game:HttpGet("https://raw.githubusercontent.com/y-d/lua/refs/heads/main/autobond.lua"))
