@@ -1,5 +1,4 @@
--- credits to @.bl6e (on discord) for original script
--- kinda a fork of it but alr
+repeat wait() until game:IsLoaded()
 local Fluent = loadstring(game:HttpGet("https://github.com/dawid-scripts/Fluent/releases/latest/download/Main.lua"))()
 
 function printnotify(str)
