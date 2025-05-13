@@ -208,7 +208,7 @@ cyberseallHumanoid:TakeDamage(999999)
 cyberseallEndDecisionRemote:FireServer(false)
 -- added auto play with team
 local playbtn = cyberseallPlayer.PlayerGui.EndScreen.EndFrame.BottomFrame.PlayAgainButton
-repeat wait() until playbtn cyberseallPlayer.PlayerGui.EndScreen.EndFrame.Visible
+repeat wait() until cyberseallPlayer.PlayerGui.EndScreen.EndFrame.Active
 local Gs = game:GetService("GuiService")
 local Vim = game:GetService("VirtualInputManager")
 Gs.SelectedObject = playbtn
