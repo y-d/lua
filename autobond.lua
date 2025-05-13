@@ -1,4 +1,37 @@
 repeat wait() until game:IsLoaded()
+
+local Hrp = game.Players.LocalPlayer.Character.HumanoidRootPart
+local PlrGui = game.Players.LocalPlayer.PlayerGui
+
+function click(btn)
+    if btn then
+        game:GetService("GuiService").SelectedObject = btn
+        wait()
+        game:GetService("VirtualInputManager"):SendKeyEvent(true, Enum.KeyCode.Return, false, game)
+        wait()
+        game:GetService("VirtualInputManager"):SendKeyEvent(false, Enum.KeyCode.Return, false, game)
+        wait()
+        game:GetService("GuiService").SelectedObject = nil
+    end
+end
+
+if game.PlaceId == 116495829188952 then
+	for i,v in pairs(workspace.PartyZones:GetChildren()) do
+		if v.BillboardGui.StatusLabel.Text == "Waiting for players..." then
+			Hrp.CFrame = v.Hitbox.CFrame
+			wait(.5)
+			repeat 
+				wait()
+				click(PlrGui.PartyCreation.Background.SettingsContainer.PlayerCountSetting.Frame.Subtract)
+			until PlrGui.PartyCreation.Background.SettingsContainer.PlayerCountSetting.Frame.TextLabel.Text == "1"
+			wait(0.2)
+			click(PlrGui.PartyCreation.Background.CreateContainer.CreateButton)
+		end
+	end
+	cyberseallQueueOnTp("loadstring(game:HttpGet('https://raw.githubusercontent.com/y-d/lua/refs/heads/main/autobond.lua'))()")
+	return
+end
+
 local Fluent = loadstring(game:HttpGet("https://github.com/dawid-scripts/Fluent/releases/latest/download/Main.lua"))()
 
 function printnotify(str)
@@ -210,13 +243,7 @@ local playbtn = cyberseallPlayer.PlayerGui.EndScreen.EndFrame.BottomFrame.PlayAg
 repeat wait() until cyberseallPlayer.PlayerGui.EndScreen.EndFrame.Active
 local Gs = game:GetService("GuiService")
 local Vim = game:GetService("VirtualInputManager")
-Gs.SelectedObject = playbtn
-wait()
-Vim:SendKeyEvent(true, Enum.KeyCode.Return, false, game)
-wait()
-Vim:SendKeyEvent(false, Enum.KeyCode.Return, false, game)
-wait()
-Gs.SelectedObject = nil
+click(playbtn)
 
 printnotify("→ Script Completed.. wait till server hop..")
 cyberseallQueueOnTp("loadstring(game:HttpGet('https://raw.githubusercontent.com/y-d/lua/refs/heads/main/autobond.lua'))()")
