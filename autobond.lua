@@ -1,5 +1,4 @@
 repeat wait() until game:IsLoaded()
-wait(10) -- some inits from execs takes long to load
 local Fluent = loadstring(game:HttpGet("https://github.com/dawid-scripts/Fluent/releases/latest/download/Main.lua"))()
 
 function printnotify(str)
@@ -220,4 +219,6 @@ wait()
 Gs.SelectedObject = nil
 
 printnotify("→ Script Completed.. wait till server hop..")
-cyberseallQueueOnTp(game:HttpGet("https://raw.githubusercontent.com/y-d/lua/refs/heads/main/autobond.lua"))
+if cyberseallQueueOnTp then
+	cyberseallQueueOnTp(game:HttpGet("https://raw.githubusercontent.com/y-d/lua/refs/heads/main/autobond.lua"))
+end
