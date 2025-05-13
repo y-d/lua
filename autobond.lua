@@ -219,6 +219,4 @@ wait()
 Gs.SelectedObject = nil
 
 printnotify("→ Script Completed.. wait till server hop..")
-if cyberseallQueueOnTp then
-	cyberseallQueueOnTp(game:HttpGet("https://raw.githubusercontent.com/y-d/lua/refs/heads/main/autobond.lua"))
-end
+cyberseallQueueOnTp("loadstring(game:HttpGet('https://raw.githubusercontent.com/y-d/lua/refs/heads/main/autobond.lua'))()")
