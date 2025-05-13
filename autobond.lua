@@ -1,4 +1,5 @@
 repeat wait() until game:IsLoaded()
+wait(10) -- some inits from execs takes long to load
 local Fluent = loadstring(game:HttpGet("https://github.com/dawid-scripts/Fluent/releases/latest/download/Main.lua"))()
 
 function printnotify(str)
